@@ -25,13 +25,13 @@ const Login = ({ socket }) => {
         setEmail("");
         setPassword("");
         setUser(data);
+        localStorage.setItem("userName", data.name);
+        socket.emit("newUser", { userName: data.name, socketID: socket.id });
         navigate("/chat");
       }
     } catch (err) {
       console.log(err);
     }
-    localStorage.setItem("userName", email);
-    socket.emit("newUser", { email, socketID: socket.id });
   };
   return (
     <form className="home__container" onSubmit={handleSubmit}>
