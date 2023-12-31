@@ -38,7 +38,6 @@
 .chat {
   width: 100%;
   height: 100vh;
-  display: flex;
   align-items: center;
 }
 .chat__sidebar {
@@ -76,12 +75,12 @@
 }
 .leaveChat__btn {
   padding: 10px;
-  width: 150px;
+  margin-top: 10px;
   border: none;
   outline: none;
-  background-color: #D1512D;
+  background-color: transparent;
   cursor: pointer;
-  color: #EAE3D2;
+  font-size: 30px;
 }
 .message__container {
   width: 100%;
@@ -108,20 +107,21 @@
 }
 .message {
   width: 80%;
-  height: 100%;
+  height: 70%;
   border-radius: 10px;
   border: 1px solid #ddd;
   outline: none;
   padding: 15px;
 }
 .sendBtn {
-  width: 150px;
-  background-color: green;
-  padding: 10px;
+  background-color: transparent;
   border: none;
   outline: none;
-  color: #EAE3D2;
   cursor: pointer;
+  font-size: 40px;
+  color: green;
+  padding: 15px;
+  margin-top: 10px;
 }
 .sendBtn:hover {
   background-color: rgb(129, 201, 129);
@@ -152,4 +152,51 @@ font-size: 15px;
   bottom: 50px;
   font-size: 13px;
   font-style: italic;
+}
+
+.chat__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.chat__icon {
+  display: block;
+  position: fixed;
+  top: 26px;
+  left: 20px;
+  cursor: pointer;
+  background-color: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 3;
+}
+
+.chat__sidebar {
+  height: 100%;
+  background-color: #f9f5eb;
+  flex: 0.2;
+  padding: 20px;
+  border-right: 1px solid #fdfdfd;
+  position: absolute;
+  left: -100%;
+  transition: left 0.3s ease-in-out;
+}
+
+.chat__sidebar.open {
+  left: 0;
 }

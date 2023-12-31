@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { IoSendSharp } from "react-icons/io5";
 
 const ChatFooter = ({socket}) => {
     const [message, setMessage] = useState("")
@@ -29,7 +30,7 @@ const ChatFooter = ({socket}) => {
             onChange={e => setMessage(e.target.value)}
             onKeyDown={handleTyping}
             />
-            <button className="sendBtn">SEND</button>
+            <button className="sendBtn"><IoSendSharp/></button>
         </form>
      </div>
   )
