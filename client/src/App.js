@@ -7,8 +7,12 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import { UserContextProvider } from "./context/userContext";
 
-const socket = socketIO.connect("http://localhost:4000");
-axios.defaults.baseURL = "http://localhost:4000";
+// const socket = socketIO.connect("http://localhost:4000");
+const socket = socketIO.connect("https://abbass.shop", {
+  withCredentials: true,
+});
+
+axios.defaults.baseURL = "https://abbass.shop";
 axios.defaults.withCredentials = true;
 function App() {
   return (

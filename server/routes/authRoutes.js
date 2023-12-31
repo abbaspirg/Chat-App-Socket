@@ -6,7 +6,7 @@ const { api, registerUser, loginUser, logoutUser, getProfile } = require("../con
 router.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://abbas.co.in",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })

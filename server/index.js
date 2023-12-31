@@ -6,9 +6,13 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const http = require("http").Server(app);
 const PORT = 4000;
-const socketIO = require("socket.io")(http, {
+const Io = require("socket.io");
+const socketIO = Io(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://abbas.co.in",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
   },
 });
 
@@ -28,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://abbas.co.in",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
