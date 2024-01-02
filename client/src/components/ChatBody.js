@@ -35,7 +35,7 @@ const ChatBody = ({
         </div>
       </header>
 
-      <div className="message__container">
+      {/* <div className="message__container">
         {messages.map((message) =>
           message.name === localStorage.getItem("userName") ? (
             <div className="message__chats" key={message.id}>
@@ -53,6 +53,36 @@ const ChatBody = ({
             </div>
           )
         )}
+
+        <div className="message__status">
+          <p>{typingStatus}</p>
+        </div>
+        <div ref={lastMessageRef} />
+      </div> */}
+      <div className="message__container">
+        {messages.map((message, index) => {
+          const isCurrentUser =
+            message.name === localStorage.getItem("userName");
+          const isFirstInGroup =
+            index === 0 || messages[index - 1].name !== message.name;
+
+          return (
+            <div className="message__chats" key={message.id}>
+              {isFirstInGroup && (
+                <p className={isCurrentUser ? "sender__name" : ""}>
+                  {isCurrentUser ? "You" : message.name}
+                </p>
+              )}
+              <div
+                className={
+                  isCurrentUser ? "message__sender" : "message__recipient"
+                }
+              >
+                <p>{message.text}</p>
+              </div>
+            </div>
+          );
+        })}
 
         <div className="message__status">
           <p>{typingStatus}</p>

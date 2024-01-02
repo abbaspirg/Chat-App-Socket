@@ -4,12 +4,13 @@ const dotenv = require("dotenv").config();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const http = require("http").Server(app);
+const http = require("http");
 const PORT = 4000;
 const Io = require("socket.io");
+const server = http.createServer(app);
 const socketIO = Io(server, {
   cors: {
-    origin: "https://abbas.co.in",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -32,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     credentials: true,
-    origin: "https://abbas.co.in",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
@@ -66,8 +67,9 @@ app.get("/profile", require("./routes/authRoutes"));
 app.post("/register", require("./routes/authRoutes"));
 app.post("/login", require("./routes/authRoutes"));
 app.post("/logout", require("./routes/authRoutes"));
+app.post("/googleOuuth", require("./routes/authRoutes"));
 
-http.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 

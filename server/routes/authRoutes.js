@@ -1,12 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
-const { api, registerUser, loginUser, logoutUser, getProfile } = require("../controllers/authController");
+const {
+  api,
+  registerUser,
+  loginUser,
+  logoutUser,
+  getProfile,
+  googleOuth,
+} = require("../controllers/authController");
 
 router.use(
   cors({
     credentials: true,
-    origin: "https://abbas.co.in",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
@@ -21,5 +28,7 @@ router.use("/login", loginUser);
 router.use("/logout", logoutUser);
 
 router.use("/profile", getProfile);
+
+router.use("/googleOuuth", googleOuth);
 
 module.exports = router;

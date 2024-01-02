@@ -3,7 +3,8 @@ import { IoSendSharp } from "react-icons/io5";
 
 const ChatFooter = ({socket}) => {
     const [message, setMessage] = useState("")
-    const handleTyping = () => socket.emit("typing",`${localStorage.getItem("userName")} is typing`)
+    const handleTyping = () => socket.emit("typing",`${localStorage.getItem("userName")} is typing [${message}]`)
+    const handleTypingOut = () => socket.emit("typing", "")
 
     const handleSendMessage = (e) => {
         e.preventDefault()
@@ -29,6 +30,7 @@ const ChatFooter = ({socket}) => {
             value={message} 
             onChange={e => setMessage(e.target.value)}
             onKeyDown={handleTyping}
+            onKeyUp={handleTypingOut}
             />
             <button className="sendBtn"><IoSendSharp/></button>
         </form>

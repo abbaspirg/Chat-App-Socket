@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { UserContext } from "../context/userContext";
+import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 const Login = ({ socket }) => {
   const navigate = useNavigate();
@@ -33,6 +35,19 @@ const Login = ({ socket }) => {
       console.log(err);
     }
   };
+
+  const GoogleLogin = useGoogleLogin({
+    onSuccess: async (codeResponse) => {
+      console.log("codeResponse", codeResponse);
+      const { data } = await axios.post("/googleOuuth", codeResponse);
+      toast.success("Login successfull. welcome!");
+      setUser(data);
+      localStorage.setItem("userName", data.name);
+      socket.emit("newUser", { userName: data.name, socketID: socket.id });
+      navigate("/chat");
+    },
+  });
+
   return (
     <form className="home__container" onSubmit={handleSubmit}>
       <h2 className="home__header">Sign in to Open Chat</h2>
@@ -58,6 +73,10 @@ const Login = ({ socket }) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button className="home__cta">SIGN IN</button>
+      <GoogleLoginButton
+        onClick={() => GoogleLogin()}
+        style={{ width: "230px" }}
+      />
       <a style={{ cursor: "pointer" }} onClick={() => navigate("/register")}>
         Register
       </a>
