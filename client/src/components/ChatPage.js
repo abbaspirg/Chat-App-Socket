@@ -13,6 +13,15 @@ const ChatPage = ({ socket }) => {
     socket.on("messageResponse", (data) => setMessages([...messages, data]));
   }, [socket, messages]);
 
+  useEffect(()=> {
+    function fetchMessages() {
+      fetch("http://localhost:4000/api")
+      .then(response => response.json())
+      .then(data => setMessages(data.messages))
+    }
+    fetchMessages()
+}, [])
+
   useEffect(() => {
     socket.on("typingResponse", (data) => setTypingStatus(data));
   }, [socket]);
@@ -36,28 +45,7 @@ const ChatPage = ({ socket }) => {
         className={`chat__overlay ${isChatBarOpen ? "visible" : ""}`}
         onClick={closeChatBar}
       ></div>
-      <div
-        className={`chat__icon ${isChatBarOpen ? "hidden" : ""}`}
-        style={{ display: isChatBarOpen ? "none" : "" }}
-        onClick={toggleChatBar}
-      >
-        <svg
-          width="20"
-          height="20"
-          class="me-1"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M3 12h18"></path>
-          <path d="M3 6h18"></path>
-          <path d="M3 18h18"></path>
-        </svg>
-      </div>
+      
       <ChatBar socket={socket} isOpen={isChatBarOpen} />
       <div className="chat__main">
         <ChatBody
@@ -65,6 +53,7 @@ const ChatPage = ({ socket }) => {
           messages={messages}
           typingStatus={typingStatus}
           lastMessageRef={lastMessageRef}
+          toggleChatBar={toggleChatBar}
         />
         <ChatFooter socket={socket} />
       </div>

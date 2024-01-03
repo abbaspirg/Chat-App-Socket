@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../context/userContext"
 
-const ChatBar = ({ socket, isOpen }) => {
+const ChatBar = ({ socket, isOpen, isChatBarOpen }) => {
   const [users, setUsers] = useState([]);
   const { user } = useContext(UserContext)
 
@@ -10,7 +10,7 @@ const ChatBar = ({ socket, isOpen }) => {
   }, [socket, users]);
 
   return (
-    <div className={`chat__sidebar ${isOpen ? 'open' : ''}`}>
+    <div className={`chat__sidebar ${isOpen ? 'open' : ''}`} style={{ zIndex: isChatBarOpen ? "0" : "1" }}>
       <h2>Open Chat</h2>
       <div>
         <h4 className="chat__header">ACTIVE USERS</h4>

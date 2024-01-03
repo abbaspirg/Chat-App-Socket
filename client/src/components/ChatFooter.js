@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { IoSendSharp } from "react-icons/io5";
+import checkPageStatus from "../utils/functions"
 
 const ChatFooter = ({socket}) => {
     const [message, setMessage] = useState("")
@@ -17,9 +18,11 @@ const ChatFooter = ({socket}) => {
             socketID: socket.id
             }
         )
+        checkPageStatus(message, localStorage.getItem("userName")) 
         }
         setMessage("")
     }
+
   return (
     <div className='chat__footer'>
         <form className='form' onSubmit={handleSendMessage}>

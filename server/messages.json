@@ -1,0 +1,52 @@
+{
+  "messages": [
+    {
+      "text": "Hello!",
+      "name": "abbas p",
+      "id": "abcd01"
+    },
+    {
+      "text": "Welcome to my chat application!💃🏻",
+      "name": "abbas p",
+      "id": "defg02"
+    },
+    {
+      "text": "You can start chatting!📲",
+      "name": "abbas p",
+      "id": "hijk03"
+    },
+    {
+      "text": "hoW ARE YOU?",
+      "name": "demo",
+      "id": "undefined0.5917154518307712"
+    },
+    {
+      "text": "hI",
+      "name": "demo",
+      "id": "uoHsAwmdqIBt0TC5AAAL0.45729122572506054",
+      "socketID": "uoHsAwmdqIBt0TC5AAAL"
+    },
+    {
+      "text": "JDAKJF",
+      "name": "demo",
+      "id": "4Tjv7ZQMYVQnhksUAAAB0.9849367782971672",
+      "socketID": "4Tjv7ZQMYVQnhksUAAAB"
+    },
+    {
+      "text": "FSAGD",
+      "name": "demo",
+      "id": "undefined0.6947936825204639"
+    },
+    {
+      "text": "FDSA",
+      "name": "demo",
+      "id": "undefined0.6157387152629623"
+    },
+    {
+      "text": "F",
+      "name": "demo",
+      "id": "k69s1QmXu8WGBx3TAAAB0.5682683871253689",
+      "socketID": "k69s1QmXu8WGBx3TAAAB"
+    }
+  ]
+}

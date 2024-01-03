@@ -9,6 +9,7 @@ const ChatBody = ({
   typingStatus,
   lastMessageRef,
   isChatBarOpen,
+  toggleChatBar,
 }) => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
@@ -24,7 +25,29 @@ const ChatBody = ({
   return (
     <>
       <header className="chat__mainHeader">
-        <p style={{ marginLeft: isChatBarOpen ? "" : "40px" }}>
+      <div
+        // className={`chat__icon ${isChatBarOpen ? "hidden" : ""}`}
+        style={{ zIndex: isChatBarOpen ? "0" : "1" }}
+        onClick={toggleChatBar}
+      >
+        <svg
+          width="20"
+          height="20"
+          class="me-1"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+      </div>
+        <p style={{ marginLeft: isChatBarOpen ? "40px" : "40px" }}>
           Hangout with Colleagues
         </p>
         <div style={{ alignItems: "center", display: "flex" }}>

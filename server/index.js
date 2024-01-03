@@ -7,7 +7,11 @@ const cookieParser = require("cookie-parser");
 const http = require("http");
 const PORT = 4000;
 const Io = require("socket.io");
+const fs = require('fs');
+const rawData = fs.readFileSync('messages.json');
+const messagesData = JSON.parse(rawData);
 const server = http.createServer(app);
+
 const socketIO = Io(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -43,10 +47,17 @@ let users = [];
 
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on("message", (data) => {
-    socketIO.emit("messageResponse", data);
-  });
 
+  socket.on("message", data => {
+    messagesData["messages"].push(data)
+    const stringData = JSON.stringify(messagesData, null, 2)
+    fs.writeFile("messages.json", stringData, (err)=> {
+      console.error(err)
+    })
+    socketIO.emit("messageResponse", data)
+  })
+
+  
   socket.on("typing", (data) => socket.broadcast.emit("typingResponse", data));
 
   socket.on("newUser", (data) => {

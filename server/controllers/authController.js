@@ -2,9 +2,13 @@ const User = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
+const fs = require('fs');
+//Gets the messages.json file and parse the file into JavaScript object
+const rawData = fs.readFileSync('messages.json');
+const messagesData = JSON.parse(rawData);
 
 const api = (req, res) => {
-  res.json({ message: "Hello" });
+  res.json(messagesData);
 };
 
 const registerUser = async (req, res) => {
